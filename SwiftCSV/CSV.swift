@@ -9,8 +9,6 @@
 import Foundation
 
 public class CSV {
-    static private let comma: Character = ","
-    
     public var header: [String]!
     var _rows: [[String: String]]? = nil
     var _columns: [String: [String]]? = nil
@@ -25,7 +23,7 @@ public class CSV {
     /// string: string data of the CSV file
     /// delimiter: character to split row and header fields by (default is ',')
     /// loadColumns: whether to populate the columns dictionary (default is true)
-    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) {
+    public init(string: String, delimiter: Character = ",", loadColumns: Bool = true) {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
@@ -42,7 +40,7 @@ public class CSV {
     /// delimiter: character to split row and header fields by (default is ',')
     /// encoding: encoding used to read file (default is NSUTF8StringEncoding)
     /// loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
+    public convenience init(name: String, delimiter: Character = ",", encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
         self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
@@ -54,7 +52,7 @@ public class CSV {
     /// delimiter: character to split row and header fields by (default is ',')
     /// encoding: encoding used to read file (default is NSUTF8StringEncoding)
     /// loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
+    public convenience init(url: URL, delimiter: Character = ",", encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
         self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)

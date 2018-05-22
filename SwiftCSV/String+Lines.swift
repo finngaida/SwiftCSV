@@ -10,8 +10,8 @@ extension String {
     var firstLine: String {
         var index = startIndex
         while index < endIndex && self[index] != "\r\n" && self[index] != "\n" && self[index] != "\r" {
-            index = index.advanced(by: 1)
+            index = self.index(after: index)
         }
-        return substring(to: index)
+        return String(self[..<index])
     }
 }
